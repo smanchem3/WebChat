@@ -5,9 +5,6 @@ var io = require('socket.io')(http);
 
 var id = "/";
 
-// Array of Usernames
-var usernames = {};
-
 // Set chat interface
 app.get(id, function(req, res){
   res.sendfile('index.html');
@@ -37,8 +34,6 @@ io.on('connection', function(socket){
   socket.on('adduser', function(username){
 		// we store the username in the socket session for this client
 		socket.username = username;
-		// add the client's username to the global list
-		usernames[username] = username;
 		
 		// echo to client they've connected
 		socket.emit('chat message', 'SERVER: you are now connected');
