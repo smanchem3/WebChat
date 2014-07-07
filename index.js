@@ -32,14 +32,14 @@ function getDateTime() {
 io.on('connection', function(socket){
   console.log('A user connected');  
   socket.on('adduser', function(username){
-		// we store the username in the socket session for this client
-		socket.username = username;
-		
-		// echo to client they've connected
-		socket.emit('chat message', 'SERVER: you are now connected');
-		// echo globally (all clients) that a person has connected
-		socket.broadcast.emit('chat message', 'SERVER: ' + username + ' has connected');
-	});
+	// we store the username in the socket session for this client
+	socket.username = username;
+	
+	// echo to client they've connected
+	socket.emit('chat message', 'SERVER: you are now connected');
+	// echo globally (all clients) that a person has connected
+	socket.broadcast.emit('chat message', 'SERVER: ' + username + ' has connected');
+  });
 
   // When user disconnects a disconnect message is sent to all remaining clients and the server logs it
   socket.on('disconnect', function(){
